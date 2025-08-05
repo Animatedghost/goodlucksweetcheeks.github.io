@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Good Luck Sweet Cheeks</title>
+  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      background: lavender;
+      font-family: 'Indie Flower', cursive;
+      overflow: hidden;
+      text-align: center;
+    }
+    .slide {
+      display: none;
+      padding: 20px;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .slide img {
+      width: 250px;
+      height: auto;
+      margin-bottom: 20px;
+    }
+    .slide p {
+      font-size: 24px;
+      max-width: 90%;
+      color: #4a2c5b;
+    }
+    .visible {
+      display: flex;
+    }
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+  </style>
+</head>
+<body onclick="nextSlide()">
+
+<canvas id="hearts"></canvas>
+
+<audio autoplay loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="slide visible">
+  <img src="teddy1.jpg" alt="Teddy Bear 1">
+  <p>Hey my sweet cheeks… I made this just for you 😚 Keep clicking — I’ve got a few things to say.</p>
+</div>
+<div class="slide">
+  <img src="teddy2.jpg" alt="Teddy Bear 2">
+  <p>You’ve worked so hard for this moment. I’m so proud of the strong, smart, beautiful woman you are 💜📚</p>
+</div>
+<div class="slide">
+  <img src="teddy3.jpg" alt="Teddy Bear 3">
+  <p>Don’t stress baby. You’ve got this exam in the bag — and I’ve got your back always 🥺💪🏽</p>
+</div>
+<div class="slide">
+  <img src="teddy4.jpg" alt="Teddy Bear 4">
+  <p>Even when you’re nervous, remember this: You’re magic, you’re brilliant, and you’re never alone ✨💞</p>
+</div>
+<div class="slide">
+  <img src="teddy5.jpg" alt="Teddy Bear 5">
+  <p>After this exam? It’s you + me + celebration mode 🥳🍦 (and maybe some cuddles too)</p>
+</div>
+<div class="slide">
+  <img src="teddy6.jpg" alt="Teddy Bear 6">
+  <p>One last thing before you go ace it… I believe in you with everything in me, and I love you endlessly ❤️🧸</p>
+</div>
+
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide');
+
+  function nextSlide() {
+    slides[currentSlide].classList.remove('visible');
+    currentSlide = (currentSlide + 1) % slides.length;
+    slides[currentSlide].classList.add('visible');
+  }
+
+  // Hearts animation
+  const canvas = document.getElementById("hearts");
+  const ctx = canvas.getContext("2d");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const hearts = [];
+  function Heart() {
+    this.x = Math.random() * canvas.width;
+    this.y = canvas.height + Math.random() * 100;
+    this.size = Math.random() * 20 + 10;
+    this.speed = Math.random() * 2 + 1;
+    this.opacity = Math.random();
+  }
+  function createHearts() {
+    if (hearts.length < 100) {
+      hearts.push(new Heart());
+    }
+  }
+  function drawHearts() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    hearts.forEach((heart, i) => {
+      ctx.fillStyle = `rgba(255,105,180,${heart.opacity})`;
+      ctx.beginPath();
+      ctx.moveTo(heart.x, heart.y);
+      ctx.bezierCurveTo(heart.x + heart.size / 2, heart.y - heart.size / 2, heart.x + heart.size * 2, heart.y + heart.size / 2, heart.x, heart.y + heart.size);
+      ctx.bezierCurveTo(heart.x - heart.size * 2, heart.y + heart.size / 2, heart.x - heart.size / 2, heart.y - heart.size / 2, heart.x, heart.y);
+      ctx.fill();
+      heart.y -= heart.speed;
+      if (heart.y < -20) hearts.splice(i, 1);
+    });
+  }
+  function animateHearts() {
+    createHearts();
+    drawHearts();
+    requestAnimationFrame(animateHearts);
+  }
+  animateHearts();
+</script>
+
+</body>
+</html>
