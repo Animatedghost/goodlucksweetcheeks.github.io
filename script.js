@@ -1,6 +1,6 @@
 const messages = [
   "Hey my sweet cheeks…<br>I made this just for you 😚 Keep clicking — I’ve got a few things to say.",
-  "You’re worked so hard for this moment.<br>I’m so proud of the strong, smart, beautiful woman you are 💜📚",
+  "You’re working so hard for this moment.<br>I’m so proud of the strong, smart, beautiful woman you are 💜📚",
   "Don’t stress baby.<br>You’ve got this exam in the bag — and I’ve got your back always 🥺💪🏽",
   "Even when you’re nervous, remember this:<br>You’re magic, you’re brilliant, and you’re never alone ✨💞",
   "After this exam?<br>It’s you + me + celebration mode 🥳🍦 (and maybe some cuddles too lol)",
